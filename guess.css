@@ -1,70 +1,123 @@
 * {
   box-sizing: border-box;
 }
-:root{
-  --primary-color:rgb(234, 172, 172);
+:root {
+  --primary-color: rgb(234, 172, 172);
 }
-body{
+body {
   margin: 0;
   background-color: #eee;
   font-family: Arial, Helvetica, sans-serif;
 }
-h1{
+h1 {
   text-align: center;
   padding: 20px;
   margin: 0 0 50px;
   background-color: white;
 }
-.guess-game{
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.guess-game {
   text-align: center;
   width: 1000px;
   margin: 20px auto;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  .game-area{
-  text-align: center;
-  display: flex;
-width: 100%;
-
+  .game-area {
+    text-align: center;
+    display: flex;
+  /*flex-direction: column;*/
+    width: 100%;
+    .inputs {
+      > div {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 30px;
+          margin-right: 15px;
+          font-weight: bold;
+        }
+        input {
+          margin: 0 5px;
+          width: 60px;
+          height: 60px;
+          text-align: center;
+          font-size: 50px;
+          caret-color: var(--primary-color);
+          background-color: white;
+          border: none;
+          border-bottom: 3px solid #333;
+          &:focus {
+            outline-color: #ccc;
+          }
+          &.yes-in-place {
+            background-color: #f89e13;
+            border: #f89e13;
+            color: white;
+          }
+          &.not-in-place {
+            background-color: #18ba89;
+            border: #18ba89;
+            color: white;
+          }
+          &.no {
+            background-color: #27303f;
+            border: #27303f;
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }
-}
-.key-colors{
-    margin-left: auto !important;  
-  .key-color{
+.disabled-inputs {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+.key-colors {
+  margin-left: auto !important;
+  .key-color {
     display: flex;
     align-items: center;
     padding: 15px;
     background-color: white;
     margin-bottom: 10px;
-    .key{
+    .key {
       width: 30px;
       height: 30px;
       border-radius: 50%;
       margin-right: 10px;
-      &.in-place{
+      &.in-place {
         background-color: #f89e13;
       }
-      &.not-in-place{
+      &.not-in-place {
         background-color: #18ba89;
       }
-      &.no{
+      &.no {
         background-color: #27303f;
       }
     }
-    .key-text{
+    .key-text {
       font-size: 20px;
-      font-weight:bold ;
+      font-weight: bold;
     }
   }
 }
-footer{
+footer {
   text-align: center;
   padding: 20px;
   position: fixed;
   bottom: 0;
-  left:0;
+  left: 0;
   width: 100%;
   background-color: #333;
-  color: white
+  color: white;
 }
