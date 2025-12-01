@@ -8,8 +8,14 @@ body {
   margin: 0;
   background-color: #eee;
   font-family: Arial, Helvetica, sans-serif;
+  padding-top: 120px;
 }
 h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   text-align: center;
   padding: 20px;
   margin: 0 0 50px;
@@ -19,7 +25,7 @@ h1 {
 .left-side {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .guess-game {
@@ -31,8 +37,7 @@ h1 {
   justify-content: space-between;
   .game-area {
     text-align: center;
-    display: flex;
-  /*flex-direction: column;*/
+     display: flex;
     width: 100%;
     .inputs {
       > div {
@@ -76,12 +81,45 @@ h1 {
         }
       }
     }
+    .control {
+       display: flex;
+       align-items: center;   
+       width: 100%;
+       /*margin: 20px 40px;*/
+       margin-top: 10px;
+       margin-bottom: 60px;
+       margin-left: 170px;
+      gap: 15px;
+      .check {
+        background-color: rgb(1, 8, 12);
+        flex: 1;
+      }
+      .hint {
+        background-color: #009688;
+        width: fit-content;
+      }
+      button {
+        border: none;
+        font-size: 25px;
+        padding: 15px 20px;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:disabled {
+        background-color: black;
+        opacity: 0.4;
+        cursor: no-drop;
+      }
+    }
   }
 }
+
 .disabled-inputs {
-          opacity: 0.5;
-          pointer-events: none;
-        }
+  opacity: 0.5;
+  pointer-events: none;
+}
 .key-colors {
   margin-left: auto !important;
   .key-color {
@@ -109,6 +147,22 @@ h1 {
       font-size: 20px;
       font-weight: bold;
     }
+  }
+}
+.message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  span {
+    font-weight: bold;
+    display: block;
+    font-size: 50px;
+    color: var(--primary-color);
+    text-transform: capitalize;
+    margin-top: 10px;
+  }
+  p {
+    margin-top: 15px;
   }
 }
 footer {
