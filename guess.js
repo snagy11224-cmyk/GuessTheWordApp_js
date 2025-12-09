@@ -300,6 +300,11 @@ function handleGuesses() {
 
   if (guessWord === wordToGuess) {
     messageArea.innerHTML = `<div style="margin-bottom: 50px">You Win! the word is <span>${wordToGuess}</span></div> `;
+  let allTries=document.querySelectorAll('.inputs > div');
+  allTries.forEach((tryDiv)=> tryDiv.classList.add("disabled-inputs"));
+  guessButton.disabled=true;
+  }else{
+    console.log("You Lose !")
   }
 }
 
