@@ -8,7 +8,8 @@ document.querySelector(
 //setting game options
 let numberOfTries = 6;
 let numberOfLetters = 6;
-let currentTry = 1;
+let currentTry = 1
+let numberOfHints=2;
 
 //manage words
 let wordToGuess = "";
@@ -225,6 +226,11 @@ wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase();
 let messageArea = document.querySelector(".message");
 console.log(wordToGuess);
 
+//manage hints
+document.querySelector(".hint span").innerHTML = numberOfHints;
+const getHintButton=document.querySelector(".hint");
+getHintButton.addEventListener("click",getHint);
+
 function generateInput() {
   const inputsContainer = document.querySelector(".inputs");
   for (let i = 1; i <= numberOfTries; i++) {
@@ -330,7 +336,25 @@ function handleGuesses() {
     }
 }
 }
+function getHint(){
+if(numberOfHints>0){
+  numberOfHints--;
+  document.querySelector(".hint span").innerHTML = numberOfHints;
+}if(numberOfHints=== 0){
+  getHintButton.disabled=true;
+}
+  const enabledInputs=document.querySelectorAll("input:not([disabled])");
+const emptyEnabledInputs=Array.from(enabledInputs).filter((input)=> input.value==="");
+if(emptyEnabledInputs.length>0){
+  const randomIndex=Math.floor(Math.random() * emptyEnabledInputs.length);
+  const randomInput=emptyEnabledInputs[randomIndex];
+  const indexToFill=Array.from(enabledInputs).indexOf(randomInput);
+  if (indexToFill !== -1){
+    randomInput.value=wordToGuess[indexToFill].toUpperCase();
+  }
+}
 
+}
 //function call
 window.onload = function () {
   generateInput();
