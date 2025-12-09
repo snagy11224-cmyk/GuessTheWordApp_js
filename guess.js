@@ -306,9 +306,15 @@ function handleGuesses() {
 
   if (guessWord === wordToGuess) {
     messageArea.innerHTML = `<div style="margin-bottom: 50px">You Win! the word is <span>${wordToGuess}</span></div> `;
-  let allTries=document.querySelectorAll('.inputs > div');
+  
+    if(numberOfHints===2){
+          messageArea.innerHTML = `<p> Congrats, you didn't use hints!</p> `;
+    }
+  
+    let allTries=document.querySelectorAll('.inputs > div');
   allTries.forEach((tryDiv)=> tryDiv.classList.add("disabled-inputs"));
   guessButton.disabled=true;
+  getHintButton.disabled = true;
   } else {
     // disable current try
     const currentDiv = document.querySelector(`.try-${currentTry}`);
@@ -324,14 +330,14 @@ function handleGuesses() {
 
     // if next try exists
     if (nextDiv) {
-        nextDiv.classList.remove("disabled-inputs");    // <<< FIX #1
+        nextDiv.classList.remove("disabled-inputs");    
         const nextInputs = nextDiv.querySelectorAll("input");
-        nextInputs.forEach(inp => inp.disabled = false); // <<< FIX #2
-
-        nextInputs[0].focus(); // <<< FIX #3
+        nextInputs.forEach(inp => inp.disabled = false); 
+        nextInputs[0].focus(); 
     } 
     else {
         guessButton.disabled = true;
+        getHintButton.disabled = true;
         messageArea.innerHTML = `<div style="margin-bottom: 50px">You Lose! the word is <span>${wordToGuess}</span></div>`;
     }
 }
