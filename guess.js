@@ -303,9 +303,32 @@ function handleGuesses() {
   let allTries=document.querySelectorAll('.inputs > div');
   allTries.forEach((tryDiv)=> tryDiv.classList.add("disabled-inputs"));
   guessButton.disabled=true;
-  }else{
-    console.log("You Lose !")
-  }
+  } else {
+    // disable current try
+    const currentDiv = document.querySelector(`.try-${currentTry}`);
+    currentDiv.classList.add("disabled-inputs");
+
+    const currentInputs = document.querySelectorAll(`.try-${currentTry} input`);
+    currentInputs.forEach(inp => inp.disabled = true);
+
+    // move to next try
+    currentTry++;
+
+    const nextDiv = document.querySelector(`.try-${currentTry}`);
+
+    // if next try exists
+    if (nextDiv) {
+        nextDiv.classList.remove("disabled-inputs");    // <<< FIX #1
+        const nextInputs = nextDiv.querySelectorAll("input");
+        nextInputs.forEach(inp => inp.disabled = false); // <<< FIX #2
+
+        nextInputs[0].focus(); // <<< FIX #3
+    } 
+    else {
+        guessButton.disabled = true;
+        messageArea.innerHTML = `<div style="margin-bottom: 50px">You Lose! the word is <span>${wordToGuess}</span></div>`;
+    }
+}
 }
 
 //function call
